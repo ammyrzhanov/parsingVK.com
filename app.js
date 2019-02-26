@@ -1,19 +1,21 @@
-const express =require('express');
-const bodyParser=require('body-parser');
-const feedRoute=require('./routes/feed');
+const express = require('express');
+const bodyParser = require('body-parser');
+const feedRoute = require('./routes/feed');
+
 const sequelize = require('./utill/database');
-const app=express();
+
+const app = express();
 
 app.use(bodyParser.json());
 
-app.use('/',feedRoute);
+app.use('/', feedRoute);
 
 sequelize
   .sync()
-  .then(result => {
+  .then(() => {
     // console.log(result);
-    app.listen(3000,console.log('server run'));
+    app.listen(3000, console.log('server run'));
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
   });
