@@ -25,6 +25,8 @@ exports.user = (req, res) => {
     .then((user) => {
       if (!user) {
         let name = '';
+        let baseInfo = '';
+        const userInfos = [];
         https.get(options, (response) => {
           let resData = '';
           response.charset = 'utf-8';
@@ -38,8 +40,6 @@ exports.user = (req, res) => {
             const userName = $('.page_name').text();
             let userIPages = '';
             name += userName;
-            const userInfos = [];
-            let baseInfo = '';
             // группы
             $('.line_cell a div').each((i, el) => {
               userIPages = $(el).attr('alt');
@@ -60,8 +60,18 @@ exports.user = (req, res) => {
               basicData: baseInfo,
               interestingPages: userInfos.toString(),
             })
-              .then(() => {
-                // console.log(result);
+              .then((result) => {
+                res.status(200).json({
+                  posts: [{
+                    idUser: result.idUser,
+                    FIOUser: result.fio,
+                    basicData: result.basicData,
+                    interestingPages: result.interestingPages,
+                    audio: result.audioRecordings,
+                    friends: result.friendsList,
+                    recordHeaders: result.recordHeaders,
+                  }],
+                });
                 console.log('Created Product');
               })
               .catch((err) => {
@@ -70,11 +80,6 @@ exports.user = (req, res) => {
           });
         }).on('error', (e) => {
           console.log(e.message);
-        });
-        res.status(200).json({
-          post: [{
-            message: 'Created Product',
-          }],
         });
       } else {
         res.status(200).json({
