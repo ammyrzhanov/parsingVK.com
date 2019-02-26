@@ -4,7 +4,7 @@ const feedController=require('../controllers/feed');
 
 
 
-router.post('/getUser/:id',feedController.getUser);
+router.post('/user/:id',feedController.getUser);
 
 
 module.exports=router;

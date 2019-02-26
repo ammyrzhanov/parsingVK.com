@@ -4,7 +4,7 @@ const https = require('https');
 const User = require('../models/user');
 
 
-exports.getUser = (req, res) => {
+exports.user = (req, res) => {
   const userId = req.params.id;
   const options = {
     hostname: 'vk.com',
