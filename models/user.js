@@ -1,17 +1,16 @@
-const Sequelize = require('sequelize');
-
-const sequelize = require('../utill/database');
-
-const User = sequelize.define('user', {
-  idUser: {
-    type: Sequelize.STRING,
-  },
-  fio: Sequelize.STRING,
-  basicData: Sequelize.TEXT,
-  audioRecordings: Sequelize.STRING,
-  interestingPages: Sequelize.STRING,
-  friendsList: Sequelize.STRING,
-  recordHeaders: Sequelize.STRING,
-});
-
-module.exports = User;
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('User', {
+    idUser: DataTypes.STRING,
+    fio: DataTypes.STRING,
+    basicData: DataTypes.TEXT,
+    audioRecordings: DataTypes.STRING,
+    interestingPages: DataTypes.STRING,
+    friendsList: DataTypes.STRING,
+    recordHeaders: DataTypes.STRING,
+  }, {});
+  User.associate = (models) => {
+    // associations can be defined here
+  };
+  return User;
+};
