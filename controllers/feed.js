@@ -50,7 +50,7 @@ exports.user = (req, res) => {
               const userBase1 = $(el).find('.labeled').text().replace(/\s\s+/g, '');
               const userBase2 = $(el).find('.label').text().replace(/\s\s+/g, '');
               if (userBase1 && userBase2) {
-                const data = `${userBase2} + ${userBase1} + \n`;
+                const data = `${userBase2}${userBase1}\n`;
                 baseInfo += (data);
               }
             });
@@ -58,7 +58,7 @@ exports.user = (req, res) => {
               idUser: userId,
               fio: name,
               basicData: baseInfo,
-              nterestingPages: userInfos.toString(),
+              interestingPages: userInfos.toString(),
             })
               .then(() => {
                 // console.log(result);
