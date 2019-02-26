@@ -16,7 +16,8 @@
     "iconv-lite": "^0.4.24",
     "nodemon": "^1.18.10",
     "pg": "^7.8.1",
-    "sequelize": "^4.42.0"
+    "sequelize": "^4.42.0",
+    "sequelize-cli": "^5.4.0"
   },
   "devDependencies": {
     "eslint": "^5.14.1",

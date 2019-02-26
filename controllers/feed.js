@@ -6,10 +6,11 @@ const User = require('../models/user');
 
 exports.user = (req, res) => {
   const userId = req.params.id;
+  console.log(userId);
   const options = {
     hostname: 'vk.com',
     port: 443,
-    path: `/ + ${userId}`,
+    path: `/${userId}`,
     method: 'GET',
     headers: {
       'Content-Type': 'text/html; charset=UTF-8',
@@ -54,7 +55,7 @@ exports.user = (req, res) => {
               }
             });
             User.create({
-              _id: userId,
+              idUser: userId,
               fio: name,
               basicData: baseInfo,
               nterestingPages: userInfos.toString(),
